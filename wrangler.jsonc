@@ -1,0 +1,5 @@
+{
+    "name": "discord-bots",
+    "compatibility_date": "2026-02-15",
+    "main": "Translation_Disctionnary/trans_dict_bot.py"
+}
