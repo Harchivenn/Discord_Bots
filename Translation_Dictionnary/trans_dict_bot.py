@@ -1,10 +1,9 @@
-import discord 
+import discord
 from discord.ext import commands
 import logging
 from dotenv import load_dotenv
 import os
 
-# Charger le fichier environnement .env
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 
@@ -13,20 +12,14 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
-bot = commands.Bot(command_prefix = '!', intents=intents)
+bot = commands.Bot(command_prefix='!', intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"Pret a pougner, {bot.user.name}!")
+    print(f"Moi,{bot.user.name}, pret a vioum !")
 
-@bot.event
-async def on_message(message):
-    # If the bot send the message ognore itself
-    if message.author == bot.user:
-        return
-    
-    if "hello" in message.content.lower():
-        await message.channel.send("Hello")
+@bot.command()
+async def ping(ctx):
+    await ctx.send('Pong!')
 
-    await bot.process_commands(message)
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
